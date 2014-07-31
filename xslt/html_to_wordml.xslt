@@ -1,4 +1,4 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
                 xmlns:o="urn:schemas-microsoft-com:office:office"
                 xmlns:v="urn:schemas-microsoft-com:vml"
@@ -17,38 +17,23 @@
 
   <xsl:output method="xml" encoding="utf-8" omit-xml-declaration="no" indent="yes" />
 
-  <xsl:template match="/">
-    <w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 wp14">
+
+<xsl:template match="/">
+  <w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mo="http://schemas.microsoft.com/office/mac/office/2008/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="urn:schemas-microsoft-com:mac:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 wp14">
       <xsl:apply-templates />
     </w:document>
   </xsl:template>
 
-  <xsl:template match="head" />
 
   <xsl:template match="body">
-    <xsl:comment>
-      KNOWN BUGS:
-      div
-        h2
-        div
-          textnode (WONT BE WRAPPED IN A W:P)
-          div
-            table
-            span
-              text
-    </xsl:comment>
-    <w:body>
-      <xsl:apply-templates/>
-      <w:sectPr>
-        <w:pgSz w:w="11906" w:h="16838"/>
-        <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="708" w:footer="708" w:gutter="0"/>
-        <w:cols w:space="708"/>
-        <w:docGrid w:linePitch="360"/>
-      </w:sectPr>
-    </w:body>
-  </xsl:template>
 
-  <xsl:template match="body/*[not(*)]">
+<w:body>
+      <xsl:apply-templates/>
+      <w:p w:rsidR="009B48FA" w:rsidRDefault="009B48FA" w:rsidP="00CF203F"><w:pPr><w:contextualSpacing/><w:jc w:val="both"/><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/><w:b/><w:sz w:val="28"/><w:szCs w:val="28"/></w:rPr></w:pPr></w:p><w:p w:rsidR="00F56312" w:rsidRPr="00231FBF" w:rsidRDefault="00F56312" w:rsidP="00CF203F"><w:pPr><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/><w:b/><w:sz w:val="28"/><w:szCs w:val="28"/></w:rPr></w:pPr></w:p><w:sectPr w:rsidR="00F56312" w:rsidRPr="00231FBF" w:rsidSect="00231FBF"><w:headerReference w:type="default" r:id="rId8"/><w:footerReference w:type="default" r:id="rId9"/><w:pgSz w:w="12242" w:h="15842" w:code="1"/><w:pgMar w:top="2268" w:right="1418" w:bottom="1418" w:left="1418" w:header="709" w:footer="709" w:gutter="0"/><w:cols w:space="708"/><w:docGrid w:linePitch="360"/></w:sectPr>
+</w:body>
+</xsl:template>
+
+<xsl:template match="body/*[not(*)]">
     <w:p>
       <w:r>
         <w:t xml:space="preserve"><xsl:value-of select="."/></w:t>
@@ -282,5 +267,6 @@
   <xsl:template match="*">
     <xsl:apply-templates/>
   </xsl:template>
+
 
 </xsl:stylesheet>
